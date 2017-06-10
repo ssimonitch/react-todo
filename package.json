@@ -4,12 +4,15 @@
   "private": true,
   "dependencies": {
     "enzyme": "^2.8.2",
+    "eslint": "^3.19.0",
+    "eslint-plugin-react": "^7.0.1",
     "jquery": "^3.2.1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-test-renderer": "^15.5.4"
   },
   "devDependencies": {
+    "eslint-plugin-jest": "^20.0.3",
     "react-scripts": "1.0.7"
   },
   "scripts": {
