@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import uuid from 'node-uuid';
 
 import TodoList from './TodoList';
 import AddTodo from './AddTodo';
@@ -11,10 +12,10 @@ class App extends Component {
       showCompleted: false,
       searchText: '',
       todos: [
-        { id: 1, text: 'walk the dog' },
-        { id: 2, text: 'walk the dog' },
-        { id: 3, text: 'walk the dog' },
-        { id: 4, text: 'walk the dog' },
+        { id: uuid(), text: 'walk the dog', completed: false },
+        { id: uuid(), text: 'walk the dog', completed: true },
+        { id: uuid(), text: 'walk the dog', completed: false },
+        { id: uuid(), text: 'walk the dog', completed: true },
       ]
     };
 
@@ -23,7 +24,15 @@ class App extends Component {
   }
 
   handleAddTodo (text) {
-    alert(text);
+    this.setState({
+      todos: [
+        ...this.state.todos,
+        { id: uuid(),
+          text,
+          completed: false
+        }
+      ]
+    });
   }
 
   handleSearch (searchText) {
@@ -38,13 +47,24 @@ class App extends Component {
     });
   }
 
+  handleToggle (id) {
+    let updatedTodos = this.state.todos.map(todo => {
+      if (todo.id === id) {
+        todo.completed = !todo.completed;
+      }
+      return todo;
+    });
+
+    this.setState({todos: updatedTodos});
+  }
+
   render() {
     const { todos } = this.state;
 
     return (
       <div>
         <TodoSearch onSearch={this.handleSearch.bind(this)} onFilter={this.handleFilter.bind(this)}/>
-        <TodoList todos={todos}/>
+        <TodoList todos={todos} onToggle={this.handleToggle.bind(this)}/>
         <AddTodo onAddTodo={this.handleAddTodo.bind(this)}/>
       </div>
     );

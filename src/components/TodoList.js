@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Todo from './Todo';
 
@@ -10,10 +11,10 @@ export default class TodoList extends Component {
     const renderTodos = () => {
       return todos.map((todo) => {
         return (
-          <Todo key={todo.id} {...todo} />
+          <Todo key={todo.id} {...todo} onToggle={this.props.onToggle}/>
         );
       });
-    }
+    };
 
     return (
       <div>
@@ -21,4 +22,9 @@ export default class TodoList extends Component {
       </div>
     );
   }
+}
+
+TodoList.propTypes = {
+  todos: PropTypes.array.isRequired,
+  onToggle: PropTypes.func.isRequired
 };

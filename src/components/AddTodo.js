@@ -9,6 +9,7 @@ export default class AddTodo extends Component {
     if (todoText.length < 1) {
       return;
     } else {
+      this.textInput.value = '';
       this.props.onAddTodo(todoText);
     }
   }
