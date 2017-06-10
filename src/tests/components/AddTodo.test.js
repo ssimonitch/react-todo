@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { shallow, mount } from 'enzyme';
 import ReactTestUtils from 'react-dom/test-utils'
 
-import AddTodo from '../components/AddTodo';
+import AddTodo from '../../components/AddTodo';
 
 describe('AddTodo', () => {
 

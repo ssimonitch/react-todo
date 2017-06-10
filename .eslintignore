@@ -13,3 +13,4 @@ website/i18n/*.js
 website/src/jest/docs
 website/src/jest/blog
 **/*.test.js
+src/setupTests.js

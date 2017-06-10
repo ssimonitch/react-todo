@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import TodoSearch from '../components/TodoSearch';
+import TodoSearch from '../../components/TodoSearch';
 
 describe('TodoSearch', () => {
 

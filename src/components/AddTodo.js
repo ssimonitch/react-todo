@@ -17,10 +17,12 @@ export default class AddTodo extends Component {
   render() {
 
     return (
-      <form onSubmit={this.handleSubmit.bind(this)} >
-        <input type="text" ref={input => this.textInput = input} placeholder="new todo"/>
-        <button>Submit</button>
-      </form>
+      <div className="container__footer">
+        <form onSubmit={this.handleSubmit.bind(this)} >
+          <input type="text" ref={input => this.textInput = input} placeholder="new todo"/>
+          <button className="button expanded">Submit</button>
+        </form>
+      </div>
     );
   }
 }

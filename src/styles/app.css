@@ -1,0 +1,30 @@
+body {
+  padding: 5em;
+}
+.app {
+  display: flex;
+}
+.todo {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  padding: 1rem;
+}
+.container__header {
+  line-height: 2em;
+}
+p {
+  padding: 1em;
+}
+
+input {
+  margin: 0;
+}
+
+p, input:first-child {
+  margin-right: 1rem;
+}
+
+.todo-completed {
+  text-decoration: line-through;
+}

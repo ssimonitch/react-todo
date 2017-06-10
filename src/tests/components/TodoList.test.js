@@ -2,14 +2,14 @@ import React from 'react';
 import { mount } from 'enzyme';
 import ReactTestUtils from 'react-dom/test-utils'
 
-import TodoList from '../components/TodoList';
-import Todo from '../components/Todo';
+import TodoList from '../../components/TodoList';
+import Todo from '../../components/Todo';
 
 describe('TodoList', () => {
 
   let todosData = [
-    { id: "asd", text: "Walk the dog", completed: true },
-    { id: "asdd", text: "Walk the cat", completed: false }
+    { id: "asd", text: "Walk the dog", completed: true, createdAt: 0 },
+    { id: "asdd", text: "Walk the cat", completed: false, createdAt: 13 }
   ]
 
   let onToggle;

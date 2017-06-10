@@ -2,15 +2,23 @@ import React from 'react';
 import { mount } from 'enzyme';
 import uuid from 'node-uuid';
 
-import Todo from '../components/Todo';
+import Todo from '../../components/Todo';
 
 describe('Todo', () => {
 
-  let onToggle = jest.fn();
   let todo;
+  let onToggle = jest.fn();
+
+  let todoData = {
+    id: "random",
+    text: 'Testing',
+    completed: false,
+    createdAt: 0,
+    completedAt: undefined
+  }
 
   beforeEach(() => {
-    todo = mount(<Todo id={"random"} text={"test"} completed={false} onToggle={onToggle}/>);
+    todo = mount(<Todo {...todoData} onToggle={onToggle} />);
   });
 
   it('renders without crashing', () => {
