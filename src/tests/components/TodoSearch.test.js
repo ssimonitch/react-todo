@@ -1,35 +1,41 @@
 import React from 'react';
 import { mount } from 'enzyme';
 
-import TodoSearch from '../../components/TodoSearch';
+import { TodoSearch } from '../../components/TodoSearch';
 
 describe('TodoSearch', () => {
 
-  let onSearch;
-  let onFilter;
   let todoSearch;
+  let spy = jest.fn();
 
   beforeEach(() => {
-    onSearch = jest.fn();
-    onFilter = jest.fn();
-    todoSearch = mount(<TodoSearch onSearch={onSearch} onFilter={onFilter} />);
+    todoSearch = mount(<TodoSearch dispatch={spy} />);
   });
 
   it('renders without crashing', () => {
     todoSearch;
   });
 
-  it('should call onSearch with entered input text', () => {
+  it('should dispatch SET_SEARCH_TEXT on input change', () => {
+    let action = {
+      type: 'SET_SEARCH_TEXT',
+      searchText: 'Test'
+    }
+
     const input = todoSearch.find('input').first();
     input.node.value = 'Test';
     input.simulate('change', input)
-    expect(onSearch).toHaveBeenCalledWith('Test');
+    expect(spy).toHaveBeenCalledWith(action);
   });
 
-  it('should call onSearch with proper checked value', () => {
+  it('should dispatch TOGGLE_SHOW_COMPLETED when checkbox checked', () => {
+    let action = {
+      type: 'TOGGLE_SHOW_COMPLETED'
+    }
+
     const checkbox = todoSearch.find('#filter');
     checkbox.simulate('change', { target: { checked: true } });
-    expect(onFilter).toHaveBeenCalledWith(true);
+    expect(spy).toHaveBeenCalledWith(action);
   });
 
 });

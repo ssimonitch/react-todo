@@ -45,6 +45,7 @@ Todo.propTypes = {
   completed: PropTypes.bool.isRequired,
   createdAt: PropTypes.number.isRequired,
   completedAt: PropTypes.number,
+  dispatch: PropTypes.func.isRequired
 };
 
 export default connect()(Todo);
