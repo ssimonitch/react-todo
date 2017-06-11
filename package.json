@@ -11,7 +11,9 @@
     "node-uuid": "^1.4.8",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
-    "react-test-renderer": "^15.5.4"
+    "react-redux": "^5.0.5",
+    "react-test-renderer": "^15.5.4",
+    "redux": "^3.6.0"
   },
   "devDependencies": {
     "eslint-plugin-jest": "^20.0.3",
