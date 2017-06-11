@@ -1,16 +1,22 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default class AddTodo extends Component {
+import { connect } from 'react-redux';
+import * as actions from '../actions/actions';
+
+export class AddTodo extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+
+    const { dispatch } = this.props;
+
     const todoText = this.textInput.value;
     if (todoText.length < 1) {
       return;
     } else {
       this.textInput.value = '';
-      this.props.onAddTodo(todoText);
+      dispatch(actions.addTodo(todoText));
     }
   }
 
@@ -28,5 +34,7 @@ export default class AddTodo extends Component {
 }
 
 AddTodo.propTypes = {
-  onAddTodo: PropTypes.func.isRequired
+  dispatch: PropTypes.func
 };
+
+export default connect()(AddTodo);

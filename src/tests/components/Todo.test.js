@@ -2,12 +2,12 @@ import React from 'react';
 import { mount } from 'enzyme';
 import uuid from 'node-uuid';
 
-import Todo from '../../components/Todo';
+import { Todo } from '../../components/Todo';
 
 describe('Todo', () => {
 
   let todo;
-  let onToggle = jest.fn();
+  let spy = jest.fn();
 
   let todoData = {
     id: "random",
@@ -18,17 +18,21 @@ describe('Todo', () => {
   }
 
   beforeEach(() => {
-    todo = mount(<Todo {...todoData} onToggle={onToggle} />);
+    todo = mount(<Todo {...todoData} dispatch={spy} />);
   });
 
   it('renders without crashing', () => {
     todo;
   });
 
-  it('should call onToggle prop with id on click', () => {
+  it('should dispatch TOGGLE_TODO action on click', () => {
     let input = todo.find('input').first();
     todo.simulate('click', input);
-    expect(onToggle).toHaveBeenCalledWith("random");
+
+    expect(spy).toHaveBeenCalledWith({
+      type: 'TOGGLE_TODO',
+      id: todoData.id
+    });
   });
 
 });

@@ -1,23 +1,20 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import { Provider } from 'react-redux';
 import ReactTestUtils from 'react-dom/test-utils'
 
-import TodoList from '../../components/TodoList';
-import Todo from '../../components/Todo';
+import ConnectedTodoList, { TodoList } from '../../components/TodoList';
+import ConnectedTodo, { Todo } from '../../components/Todo';
+
+import * as actions from '../../actions/actions';
+import { store } from '../../store/configureStore';
 
 describe('TodoList', () => {
 
-  let todosData = [
-    { id: "asd", text: "Walk the dog", completed: true, createdAt: 0 },
-    { id: "asdd", text: "Walk the cat", completed: false, createdAt: 13 }
-  ]
-
-  let onToggle;
   let todoList;
 
   beforeEach(() => {
-    onToggle = jest.fn();
-    todoList = mount(<TodoList todos={todosData} onToggle={onToggle}/>);
+    todoList = mount(<Provider store={store}><ConnectedTodoList /></Provider>)
   });
 
   it('renders without crashing', () => {
@@ -25,9 +22,11 @@ describe('TodoList', () => {
   });
 
   it('should render one Todo component for each todo item', () => {
-    let todosComponents = todoList.find(Todo);
+    store.dispatch(actions.addTodo('test1'));
+    store.dispatch(actions.addTodo('test2'));
 
-    expect(todosComponents.length).toBe(todosData.length);
+    let todoComponents = todoList.find(ConnectedTodo);
+    expect(todoComponents.length).toBe(2);
   });
 
 });

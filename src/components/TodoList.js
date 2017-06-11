@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import Todo from './Todo';
 
 import '../styles/app.css';
 
-export default class TodoList extends Component {
+export class TodoList extends Component {
   render () {
 
-    const {todos} = this.props;
+    let { todos } = this.props;
 
     const renderTodos = () => {
       if (todos.length === 0) {
@@ -19,7 +20,7 @@ export default class TodoList extends Component {
 
       return todos.map((todo) => {
         return (
-          <Todo key={todo.id} {...todo} onToggle={this.props.onToggle}/>
+          <Todo key={todo.id} {...todo}/>
         );
       });
     };
@@ -33,6 +34,11 @@ export default class TodoList extends Component {
 }
 
 TodoList.propTypes = {
-  todos: PropTypes.array.isRequired,
-  onToggle: PropTypes.func.isRequired
+  todos: PropTypes.array
 };
+
+const mapStateToProps = (state) => {
+  return { todos: state.todos };
+};
+
+export default connect(mapStateToProps)(TodoList);

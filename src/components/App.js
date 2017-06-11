@@ -9,7 +9,7 @@ import TodoAPI from '../utils/TodoAPI';
 
 import '../styles/app.css';
 
-class App extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -52,32 +52,30 @@ class App extends Component {
     });
   }
 
-  handleToggle (id) {
-    let updatedTodos = this.state.todos.map(todo => {
-      if (todo.id === id) {
-        todo.completed = !todo.completed;
-        todo.completedAt = todo.completed ? moment().unix() : undefined;
-      }
-      return todo;
-    });
-
-    this.setState({todos: updatedTodos});
-  }
+  // handleToggle (id) {
+  //   let updatedTodos = this.state.todos.map(todo => {
+  //     if (todo.id === id) {
+  //       todo.completed = !todo.completed;
+  //       todo.completedAt = todo.completed ? moment().unix() : undefined;
+  //     }
+  //     return todo;
+  //   });
+  //
+  //   this.setState({todos: updatedTodos});
+  // }
 
   render() {
-    const {todos, showCompleted, searchText} = this.state;
-    const filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
+    // const {todos, showCompleted, searchText} = this.state;
+    // const filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
 
     return (
       <div className="app">
         <div className="container">
             <TodoSearch onSearch={this.handleSearch.bind(this)} onFilter={this.handleFilter.bind(this)}/>
-            <TodoList todos={filteredTodos} onToggle={this.handleToggle.bind(this)}/>
-            <AddTodo onAddTodo={this.handleAddTodo.bind(this)}/>
+            <TodoList />
+            <AddTodo />
         </div>
       </div>
     );
   }
 }
-
-export default App;
