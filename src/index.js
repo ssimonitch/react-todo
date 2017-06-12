@@ -10,10 +10,10 @@ import './styles/app.css';
 import * as actions from './actions/actions';
 import { store } from './store/configureStore';
 
+import './playground/firebase/';
+
 store.subscribe(() => {
   let state = store.getState();
-  console.log('New state', state);
-
   TodoAPI.setTodos(state.todos);
 });
 
